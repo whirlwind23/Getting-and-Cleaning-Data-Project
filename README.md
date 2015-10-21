@@ -1,5 +1,6 @@
 # Getting-and-Cleaning-Data-Project
-This repo contains the assignment from coursera course Getting and Cleaning data from Data Science Specialization
+This repo contains the assignment from coursera course Getting and Cleaning data from Data Science Specialization.
+
 Assuming that data from url (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) has been downloaded and zip file extracted to your home directory.
 
 ##Step 1
