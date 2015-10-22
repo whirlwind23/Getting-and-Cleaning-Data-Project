@@ -1,1 +1,81 @@
+One of the most exciting areas in all of data science right now is wearable computing . 
+Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. 
+The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained: 
 
+(http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+The data contained in the tidy.txt file has been obtained by cleaning and organizing data downloaded via the following link
+(https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
+
+Initial data(X_test,X_train) for test subjects and train subjects was available in different folders(test and train) 
+with their subject and activity codes contained in seperate files(y_test,y_train,subject_test,subject_train).
+These were merged using cbind and rbind functions to makes one dataset of all test and train subjects.
+The columns with mean and standard deviation were extracted out.
+The column names and activity labels were also added later to obtain our dataset.
+The original column names were modified using gsub function to add more detail.
+
+These were aggregated using aggregate function from base R and a datafram containing mean(mean of mean and mean of standard deviations) for each activity and subject 
+was obtained.
+There were 6 activities and 30 subjects, making it a total of 180 observations for 88 variables.
+he features selected for this database come from the accelerometer and gyroscope 3-axial raw signals timeAccelerometer-XYZ and timeGyroscope-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (timeBodyAccelerometer-XYZ and timeGravityAccelerometer-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (timeBodyAccelerometerJerk-XYZ and timeBodyGyroroscopeJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (timeBodyAccelerometerMagnitude, timeGravityAccelerometerMagnitude, tBodyAccJerkMag
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing frequencyBodyAccelerometer-XYZ, frequencyBodyAcclerometerJerk-XYZ, frequencyBodyGyroscope-XYZ, frequencyBodyAccelerometerJerkMagnitude,
+frequencyBodyGyroscopeMagnitude, frequencyBodyGyroscopeJerkMagnitude. 
+Column names include:
+'''
+subject - subject code
+activitylabels- 
+ [1] "subject"                                                    "activitylabels"                                                  
+ [3] "TimeBodyAccelerometer Mean()-X"                             "TimeBodyAccelerometer Mean()-Y"                            
+ [5] "TimeBodyAccelerometer Mean()-Z"                             "TimeBodyAccelerometer St Deviation()-X"                    
+ [7] "TimeBodyAccelerometer St Deviation()-Y"                     "TimeBodyAccelerometer St Deviation()-Z"                    
+ [9] "TimeGravityAccelerometer Mean()-X"                          "TimeGravityAccelerometer Mean()-Y"                         
+[11] "TimeGravityAccelerometer Mean()-Z"                          "TimeGravityAccelerometer St Deviation()-X"                 
+[13] "TimeGravityAccelerometer St Deviation()-Y"                  "TimeGravityAccelerometer St Deviation()-Z"                 
+[15] "TimeBodyAccelerometerJerk Mean()-X"                         "TimeBodyAccelerometerJerk Mean()-Y"                        
+[17] "TimeBodyAccelerometerJerk Mean()-Z"                         "TimeBodyAccelerometerJerk St Deviation()-X"                
+[19] "TimeBodyAccelerometerJerk St Deviation()-Y"                 "TimeBodyAccelerometerJerk St Deviation()-Z"                
+[21] "TimeBodyGyroscope Mean()-X"                                 "TimeBodyGyroscope Mean()-Y"                                
+[23] "TimeBodyGyroscope Mean()-Z"                                 "TimeBodyGyroscope St Deviation()-X"                        
+[25] "TimeBodyGyroscope St Deviation()-Y"                         "TimeBodyGyroscope St Deviation()-Z"                        
+[27] "TimeBodyGyroscopeJerk Mean()-X"                             "TimeBodyGyroscopeJerk Mean()-Y"                            
+[29] "TimeBodyGyroscopeJerk Mean()-Z"                             "TimeBodyGyroscopeJerk St Deviation()-X"                    
+[31] "TimeBodyGyroscopeJerk St Deviation()-Y"                     "TimeBodyGyroscopeJerk St Deviation()-Z"                    
+[33] "TimeBodyAccelerometerMagnitude Mean()"                      "TimeBodyAccelerometerMagnitude St Deviation()"             
+[35] "TimeGravityAccelerometerMagnitude Mean()"                   "TimeGravityAccelerometerMagnitude St Deviation()"          
+[37] "TimeBodyAccelerometerJerkMagnitude Mean()"                  "TimeBodyAccelerometerJerkMagnitude St Deviation()"         
+[39] "TimeBodyGyroscopeMagnitude Mean()"                          "TimeBodyGyroscopeMagnitude St Deviation()"                 
+[41] "TimeBodyGyroscopeJerkMagnitude Mean()"                      "TimeBodyGyroscopeJerkMagnitude St Deviation()"             
+[43] "FrequencyBodyAccelerometer Mean()-X"                        "FrequencyBodyAccelerometer Mean()-Y"                       
+[45] "FrequencyBodyAccelerometer Mean()-Z"                        "FrequencyBodyAccelerometer St Deviation()-X"               
+[47] "FrequencyBodyAccelerometer St Deviation()-Y"                "FrequencyBodyAccelerometer St Deviation()-Z"               
+[49] "FrequencyBodyAccelerometer MeanFreq()-X"                    "FrequencyBodyAccelerometer MeanFreq()-Y"                   
+[51] "FrequencyBodyAccelerometer MeanFreq()-Z"                    "FrequencyBodyAccelerometerJerk Mean()-X"                   
+[53] "FrequencyBodyAccelerometerJerk Mean()-Y"                    "FrequencyBodyAccelerometerJerk Mean()-Z"                   
+[55] "FrequencyBodyAccelerometerJerk St Deviation()-X"            "FrequencyBodyAccelerometerJerk St Deviation()-Y"           
+[57] "FrequencyBodyAccelerometerJerk St Deviation()-Z"            "FrequencyBodyAccelerometerJerk MeanFreq()-X"               
+[59] "FrequencyBodyAccelerometerJerk MeanFreq()-Y"                "FrequencyBodyAccelerometerJerk MeanFreq()-Z"               
+[61] "FrequencyBodyGyroscope Mean()-X"                            "FrequencyBodyGyroscope Mean()-Y"                           
+[63] "FrequencyBodyGyroscope Mean()-Z"                            "FrequencyBodyGyroscope St Deviation()-X"                   
+[65] "FrequencyBodyGyroscope St Deviation()-Y"                    "FrequencyBodyGyroscope St Deviation()-Z"                   
+[67] "FrequencyBodyGyroscope MeanFreq()-X"                        "FrequencyBodyGyroscope MeanFreq()-Y"                       
+[69] "FrequencyBodyGyroscope MeanFreq()-Z"                        "FrequencyBodyAccelerometerMagnitude Mean()"                
+[71] "FrequencyBodyAccelerometerMagnitude St Deviation()"         "FrequencyBodyAccelerometerMagnitude MeanFreq()"            
+[73] "FrequencyBodyBodyAccelerometerJerkMagnitude Mean()"         "FrequencyBodyBodyAccelerometerJerkMagnitude St Deviation()"
+[75] "FrequencyBodyBodyAccelerometerJerkMagnitude MeanFreq()"     "FrequencyBodyBodyGyroscopeMagnitude Mean()"                
+[77] "FrequencyBodyBodyGyroscopeMagnitude St Deviation()"         "FrequencyBodyBodyGyroscopeMagnitude MeanFreq()"            
+[79] "FrequencyBodyBodyGyroscopeJerkMagnitude Mean()"             "FrequencyBodyBodyGyroscopeJerkMagnitude St Deviation()"    
+[81] "FrequencyBodyBodyGyroscopeJerkMagnitude MeanFreq()"         "Angle(tBodyAccelerometerMean,Gravity)"                     
+[83] "Angle(tBodyAccelerometerJerkMean),GravityMean)"             "Angle(tBodyGyroscopeMean,GravityMean)"                     
+[85] "Angle(tBodyGyroscopeJerkMean,GravityMean)"                  "Angle(X,GravityMean)"                                      
+[87] "Angle(Y,GravityMean)"                                       "Angle(Z,GravityMean)"                         
+'''
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+
+The set of variables that were estimated from these signals are: 
+
+mean(): Mean value
+st Deviation(): Standard deviation
